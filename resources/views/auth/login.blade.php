@@ -11,6 +11,16 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        {{-- Social Login --}}
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6">
+                                <div class="justify-content-center m-3">
+                                    <a href="{{ route('twitter.auth.redirect') }}"><img width="25" height="25" src="{{ asset('images/twitter.png') }}"></a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
