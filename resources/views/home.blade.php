@@ -19,7 +19,9 @@
                         </div>
                         <div class="col-md-10">
                             <div>Name: {{ Auth::user()->name }}</div>
-                            <div>Email: {{ Auth::user()->email }}</div>
+                            @if (Auth::user()->email)
+                                <div>Email: {{ Auth::user()->email }}</div>
+                            @endif
                         </div>
                     </div>
                 </div>
