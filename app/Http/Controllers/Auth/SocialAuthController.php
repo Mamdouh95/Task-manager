@@ -10,7 +10,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
-    public function callback()
+    public function twitterCallback()
     {
         $twitterUser = Socialite::driver('twitter')->user();
         $user = User::whereProviderId($twitterUser->id)->first();
@@ -27,8 +27,19 @@ class SocialAuthController extends Controller
         return redirect()->to('/');
     }
 
-    public function redirect()
+    public function twitterRedirect()
     {
         return Socialite::driver('twitter')->redirect();
+    }
+
+    public function facebookCallback()
+    {
+        $facebookUser = Socialite::driver('facebook')->user();
+        dd($facebookUser);
+    }
+
+    public function facebookRedirect()
+    {
+        return Socialite::driver('facebook')->redirect();
     }
 }

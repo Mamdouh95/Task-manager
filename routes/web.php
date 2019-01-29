@@ -17,7 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('twitter/callback', 'Auth\SocialAuthController@callback')->name('twitter.auth.callback');
-Route::get('twitter/redirect', 'Auth\SocialAuthController@redirect')->name('twitter.auth.redirect');
+Route::get('twitter/callback', 'Auth\SocialAuthController@twitterCallback')->name('twitter.auth.callback');
+Route::get('twitter/redirect', 'Auth\SocialAuthController@twitterRedirect')->name('twitter.auth.redirect');
+
+Route::get('facebook/callback', 'Auth\SocialAuthController@facebookCallback')->name('facebook.auth.callback');
+Route::get('facebook/redirect', 'Auth\SocialAuthController@facebookRedirect')->name('facebook.auth.redirect');
 
 Route::get('/home', 'HomeController@index')->name('home');
