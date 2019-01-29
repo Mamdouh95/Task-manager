@@ -27,4 +27,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    // <-- Accessorss & Mutators -->
+    public function getAvatarAttribute($value)
+    {
+        return $value ? $value:'images/avatar.png';
+    }
 }

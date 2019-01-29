@@ -13,8 +13,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="{{ asset(Auth::user()->avatar) }}" class="img-thumbnail"/>
+                        </div>
+                        <div class="col-md-10">
+                            <div>Name: {{ Auth::user()->name }}</div>
+                            <div>Email: {{ Auth::user()->email }}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

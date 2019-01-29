@@ -10,36 +10,25 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
 {
-    public function twitterCallback()
+    public function callback($provider)
     {
-        $twitterUser = Socialite::driver('twitter')->user();
-        $user = User::whereProviderId($twitterUser->id)->first();
+        $socialUser = Socialite::driver($provider)->user();
+        $user = User::whereProviderId($socialUser->id)->first();
         if (!$user){
             $user = User::create([
-                'name' => $twitterUser->name,
-                'email' => $twitterUser->email,
-                'avatar' => $twitterUser->avatar,
-                'provider' => 'twitter',
-                'provider_id' => $twitterUser->id,
+                'name' => $socialUser->name,
+                'email' => $socialUser->email,
+                'avatar' => $socialUser->avatar,
+                'provider' => $provider,
+                'provider_id' => $socialUser->id,
             ]);
         }
         Auth::login($user);
         return redirect()->to('/');
     }
 
-    public function twitterRedirect()
+    public function redirect($provider)
     {
-        return Socialite::driver('twitter')->redirect();
-    }
-
-    public function facebookCallback()
-    {
-        $facebookUser = Socialite::driver('facebook')->user();
-        dd($facebookUser);
-    }
-
-    public function facebookRedirect()
-    {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 }

@@ -16,8 +16,8 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-6">
                                 <div class="justify-content-center m-3">
-                                    <a href="{{ route('twitter.auth.redirect') }}"><img width="25" height="25" src="{{ asset('images/twitter.png') }}"></a>
-                                    <a href="{{ route('facebook.auth.redirect') }}"><img width="25" height="25" src="{{ asset('images/facebook.png') }}"></a>
+                                    <a href="{{ route('auth.redirect', ['provider' => 'twitter']) }}"><img width="25" height="25" src="{{ asset('images/twitter.png') }}"></a>
+                                    <a href="{{ route('auth.redirect', ['provider' => 'facebook']) }}"><img width="25" height="25" src="{{ asset('images/facebook.png') }}"></a>
                                 </div>
                             </div>
                         </div>
