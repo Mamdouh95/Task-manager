@@ -19,6 +19,7 @@
                                     <a href="{{ route('auth.redirect', ['provider' => 'twitter']) }}"><img width="25" height="25" src="{{ asset('images/twitter.png') }}"></a>
                                     <a href="{{ route('auth.redirect', ['provider' => 'facebook']) }}"><img width="25" height="25" src="{{ asset('images/facebook.png') }}"></a>
                                     <a href="{{ route('auth.redirect', ['provider' => 'linkedin']) }}"><img width="25" height="25" src="{{ asset('images/linkedin.png') }}"></a>
+                                    <a href="{{ route('auth.redirect', ['provider' => 'google']) }}"><img width="25" height="25" src="{{ asset('images/google.png') }}"></a>
                                 </div>
                             </div>
                         </div>

@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class SocialAuthController extends Controller
@@ -24,7 +25,8 @@ class SocialAuthController extends Controller
             ]);
         }
         Auth::login($user);
-        return redirect()->to('/');
+        Session::flash('success', 'Login success');
+        return redirect()->to('/home');
     }
 
     public function redirect($provider)
