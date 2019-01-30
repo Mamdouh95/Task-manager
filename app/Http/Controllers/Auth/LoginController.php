@@ -50,4 +50,8 @@ class LoginController extends Controller
     {
         Session::flash('success', 'Login success');
     }
+
+    protected function credentials(Request $request) {
+        return array_merge($request->only($this->username(), 'password'), ['provider' => null]);
+    }
 }
