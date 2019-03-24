@@ -26,4 +26,6 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/tasks', 'TaskController@index')->name('task.list');
     Route::post('/tasks', 'TaskController@store')->name('task.store');
+    Route::get('/tasks/{task}', 'TaskController@view')->name('task.view');
+    Route::put('/tasks/{task}/change-status', 'TaskController@changeStatus')->name('task.move');
 });

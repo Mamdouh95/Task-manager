@@ -4,6 +4,7 @@
 */
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangeTaskStatus;
 use App\Http\Requests\CreateTask;
 use App\Task;
 use App\User;
@@ -32,57 +33,29 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateTask|Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateTask $request)
     {
-        Task::create(array_merge(['created_by' => Auth::id()], $request->only('title', 'description', 'priority')));
-        return response()->json(['msg' => 'Task created successfully'], 200);
+        $task = Task::create(array_merge(['created_by' => Auth::id()], $request->only('title', 'description', 'priority')));
+        $card = view('tasks.card', compact('task'))->render();
+        return response()->json(['msg' => 'Task created successfully', 'card' => $card], 200);
+    }
+
+    public function view(Task $task)
+    {
+        return response()->json($task->only('title', 'description', 'priority'), 200);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
+     * @param ChangeTaskStatus $request
+     * @param Task $task
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Task $task)
+    public function changeStatus(ChangeTaskStatus $request, Task $task)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Task $task)
-    {
-        //
+        $task->update(['status' => $request->status]);
+        return response()->json([], 200);
     }
 }

@@ -1,3 +1,6 @@
 .text-align-center {
     text-align: center;
 }
+.list-group.min-50 {
+    min-height: 50px;
+}
