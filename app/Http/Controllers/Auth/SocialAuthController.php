@@ -26,7 +26,7 @@ class SocialAuthController extends Controller
         }
         Auth::login($user);
         Session::flash('success', 'Login success');
-        return redirect()->to('/home');
+        return redirect()->to('/tasks');
     }
 
     public function redirect($provider)

@@ -24,5 +24,6 @@ Route::middleware(['guest'])->group(function () {
     Route::get('{provider}/redirect', 'Auth\SocialAuthController@redirect')->name('auth.redirect');
 });
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/tasks', 'TaskController@index')->name('task.list');
+    Route::post('/tasks', 'TaskController@store')->name('task.store');
 });
